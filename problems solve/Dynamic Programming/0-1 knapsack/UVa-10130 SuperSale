@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int KnapSack (int cap, int wt[], int val[], int n)
+{
+    int i, w;
+    int table[n+1][cap+1];
+    for (i=0; i<=n; i++)
+    {
+        for (w=0; w<=cap; w++)
+        {
+            if (i==0 || w==0)table[i][w]=0;
+
+            else if (wt[i-1]<=w)table[i][w]=max (val[i-1]+table[i-1][w-wt[i-1]], table[i-1][w]);
+
+            else table[i][w]=table[i-1][w];
+        }
+    }
+    return table[n][cap];
+}
+int main()
+{
+    int t_cas,n,nub_p,max_w,sum;
+    cin>>t_cas;
+    while(t_cas--){
+        cin>>n;
+
+        int p[n+1],w[n+1];
+        for(int i=0; i<n; i++)
+        {
+            cin>>p[i]>>w[i];
+        }
+        sum=0;
+        cin>>nub_p;
+        while(nub_p--)
+        {
+            cin>>max_w;
+            sum=sum+KnapSack(max_w,w,p,n);
+
+        }
+        cout<<sum<<endl;
+    }
+
+
+
+    return 0;
+}
