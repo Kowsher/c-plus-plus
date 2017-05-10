@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int coinsWay(int amount, int n, int coins[])
+{
+    int table[n+1][amount+1];
+
+    table[0][0]=1;
+    for(int i=1; i<=n; i++)table[i][0]=1;
+    for(int j=1; j<=amount;j++)table[0][j]=0;
+
+    for(int i=1; i<=n; i++)
+    {
+        for(int j=1; j<=amount; j++)
+        {
+            if(coins[i]>j)table[i][j]=table[i-1][j];
+            else table[i][j]=table[i-1][j] + table[i][j-coins[i]];
+        }
+    }
+    return table[n][amount];
+}
+int main()
+{
+    int coins[]={0,50,25,10,5,1},amount,n=5;
+    while(cin>>amount)
+    {
+        cout<<coinsWay(amount,n,coins)<<endl;
+    }
+    
+    return 0;
+}
