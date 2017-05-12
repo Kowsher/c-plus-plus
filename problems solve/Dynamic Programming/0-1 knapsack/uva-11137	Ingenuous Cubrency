@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef unsigned long long int u64;
+u64 coins[22];
+
+u64 coinsWay(u64 amount, u64 n)
+{
+    u64 table[n+1][amount+1];
+
+    table[0][0]=1;
+    for(u64 i=1; i<=n; i++)table[i][0]=1;
+    for(u64 j=1; j<=amount;j++)table[0][j]=0;
+
+    for(u64 i=1; i<=n; i++)
+    {
+        for(u64 j=1; j<=amount; j++)
+        {
+            if(coins[i]>j)table[i][j]=table[i-1][j];
+            else table[i][j]=table[i-1][j] + table[i][j-coins[i]];
+
+        }
+
+    }
+
+    return table[n][amount];
+}
+
+void makeCoins()
+{
+    for(int i=1; i<22; i++)coins[i]=i*i*i;
+}
+int main()
+{
+    makeCoins();
+    u64 n;
+    while(cin>>n){
+    cout<<coinsWay(n, 21)<<endl;
+    }
+
+
+
+
+    return 0;
+}
