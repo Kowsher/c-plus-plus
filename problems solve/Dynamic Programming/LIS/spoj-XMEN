@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+const int NX = 100000 + 10 ;
+int ID[NX] ;
+
+int main()
+{
+
+    int cs , t ;
+    cin>>t;
+    for ( cs = 1 ; cs <= t ; cs++ )
+    {
+        int n;
+        cin>>n;
+        memset(ID,0,sizeof(ID));
+        for(int i=1; i<=n; i++)
+        {
+            int x;
+            cin>>x;
+            ID[x] = i ;
+        }
+        set < int > s ;
+        set < int > :: iterator it ;
+        for(int i=1; i<=n; i++)
+        {
+            int x;
+            cin>>x;
+            s.insert( ID[x] );
+            it = s.find( ID[x] );
+            it++;
+            if( it != s.end() ) s.erase(it);
+
+        }
+        cout << s.size() << endl ;
+    }
+
+   return 0;
+}
