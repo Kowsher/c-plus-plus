@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t_cas;
+    cin>>t_cas;
+    cin.ignore(); ///ignore one line
+    cin.ignore();
+    while(t_cas--)
+    {
+        string str;
+        set < int > lis ;
+        set < int > :: iterator  it ;
+
+        while (getline(cin, str) && str != "") ///as far we take input .if it gets " " (with space) then break
+        {
+            stringstream ss(str);
+            int missle;
+
+            ss >> missle;
+
+            lis.insert(missle);
+
+            it = lis.find( missle);
+            it++;
+
+            if( it != lis.end()) lis.erase(it);
+
+        }
+        cout<<"Max hits: "<<lis.size()<<endl;
+        for(auto& x: lis)cout<<x<<endl;
+        if(t_cas) cout<<endl;
+
+    }
+
+
+    return 0;
+}
