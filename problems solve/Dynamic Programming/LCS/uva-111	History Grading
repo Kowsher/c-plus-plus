@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int table[21][21];
+
+int LCS(int len, int x[], int y[])
+{
+    for(int r=1; r<=len; r++)
+    {
+        for(int c=1; c<=len; c++)
+        {
+                if(x[r]==y[c]) table[r][c]=table[r-1][c-1]+1;
+                else table[r][c]=max(table[r-1][c],table[r][c-1]);
+
+        }
+    }
+    return table[len][len];
+}
+
+int main()
+{
+    int n, m,a,X[21],Y[21];
+    scanf("%d\n",&n);
+    for(int i=1;i<=n;i++){
+        scanf("%d",&m);
+        X[m]=i;
+    }
+    while(1){
+        a= scanf("%d",&m);
+        if (a!=1) break;
+        Y[m] = 1;
+        for(int i=2;i<=n;i++){
+            scanf("%d",&m);
+            Y[m]=i;
+        }
+
+        cout<<LCS(n,X,Y)<<endl;
+
+    }
+
+
+
+    return 0;
+}
