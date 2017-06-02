@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int table[100][100];
+
+int LCS(int xlen, int ylen, int x[], int y[])
+{
+    for(int r=0; r<=xlen; r++)
+    {
+        for(int c=0; c<=ylen; c++)
+        {
+            if(r==0 || c==0)table[r][c]=0;
+            else
+            {
+                if(x[r-1]==y[c-1]) table[r][c]=table[r-1][c-1]+1;
+                else table[r][c]=max(table[r-1][c],table[r][c-1]);
+            }
+
+        }
+    }
+    return table[xlen][ylen];
+}
+
+int main()
+{
+    int  n,m,k,x[101],y[101];
+
+    for(int t_cas=1; ;t_cas++){
+    scanf("%d%d",&n,&m);
+    if(n==0 and m==0)break;
+
+    for(int i=0; i<n; i++)
+    {
+        scanf("%d",&x[i]);
+    }
+    for(int j=0; j<m; j++)
+    {
+        scanf("%d",&y[j]);
+    }
+    cout<<"Twin Towers #"<<t_cas<<endl;
+     cout<<"Number of Tiles : "<< LCS(n,m,x,y)<<endl;
+     cout<<endl;
+}
+
+
+    return 0;
+}
