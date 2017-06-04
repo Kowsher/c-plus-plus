@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int table[11001][11001];
+
+int LCS(int xlen, int ylen, int  x[], int y[])
+{
+    for(int r=0; r<=xlen; r++)
+    {
+        for(int c=0; c<=ylen; c++)
+        {
+            if(r==0 || c==0)table[r][c]=0;
+            else
+            {
+                if(x[r-1]==y[c-1]) table[r][c]=table[r-1][c-1]+1;
+                else table[r][c]=max(table[r-1][c],table[r][c-1]);
+            }
+        }
+    }
+    return table[xlen][ylen];
+}
+
+
+int main()
+{
+    int t_cas,  x[11001],y[11001],a,xln=0,yln=0,mx=0;
+    cin>>t_cas;
+    while(t_cas--){
+        for(int i=0; ;i++)
+            {
+                cin>>a;
+                if(a==0)break;
+                x[i]=a;
+                xln++;
+            }
+        while(cin>>a)
+        {
+            if(a==0)break;
+            y[0]=a;
+            yln++;
+            for(int i=1; ;i++)
+            {
+                cin>>a;
+                if(a==0)break;
+                y[i]=a;
+                yln++;
+            }
+
+            mx=max(mx,LCS(xln,yln,x,y));
+            yln=0;
+
+
+        }
+        cout<<mx<<endl;
+        mx=0;
+        xln=0;
+
+    }
+
+    return 0;
+}
