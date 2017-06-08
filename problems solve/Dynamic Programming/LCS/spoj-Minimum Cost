@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int table[1000][1000];
+
+int LCS(int xlen, int ylen, string x, string y)
+{
+    for(int r=0; r<=xlen; r++)
+    {
+        for(int c=0; c<=ylen; c++)
+        {
+            if(r==0 || c==0)table[r][c]=0;
+            else
+            {
+                if(x[r-1]==y[c-1]) table[r][c]=table[r-1][c-1]+1;
+                else table[r][c]=max(table[r-1][c],table[r][c-1]);
+            }
+
+        }
+    }
+    return table[xlen][ylen];
+}
+
+int main()
+{
+    string x,y;
+   while(1)
+   {
+        cin>>x;
+        if(x=="#")break;
+        cin>>y;
+
+
+    int vl= LCS(x.length(),y.length(),x,y);
+    int st=(x.length()-vl)*15;
+    int nd=(y.length()-vl)*30;
+
+    cout<<st+nd<<endl;
+   }
+
+
+    return 0;
+}
