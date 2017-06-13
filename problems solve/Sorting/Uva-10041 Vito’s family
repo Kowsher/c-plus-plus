@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+#define sc(n) scanf("%d",&n)
+using namespace std;
+
+int Distance(int n, int mid, int v[])
+{
+    int cnt=0;
+    for(int i=0; i<n; i++)
+    {
+        if(v[mid]==v[i])continue;
+        cnt=cnt+abs(v[i]-v[mid]);
+  
+    }
+    cout<<cnt<<endl;
+}
+int main()
+{
+    int t_cas,n;
+    sc(t_cas);
+    while(t_cas--)
+    {
+        sc(n);
+        int arr[n+1],max=0,mid=0;
+        for(int i=0; i<n; i++)
+        {
+            sc(arr[i]);
+             if(arr[i]>max)max=arr[i];
+        }
+        
+        sort(arr,arr+n);
+
+        if(n%2==0)mid=n/2-1;
+        else mid=n/2;
+        Distance(n,mid,arr);
+
+
+    }
+
+
+
+    return 0;
+}
