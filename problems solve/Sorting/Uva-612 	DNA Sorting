@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define sint(n) scanf("%lld", &n)
+#define lp(i,a,n) for(ll i=a; i<n; i++)
+using namespace std;
+
+string str;
+
+struct Order{
+    int pos;
+    int inversion;
+}lis[101];
+
+int getInversion(string str, int len)
+{
+    int cnt=0;
+    lp(i,0,len){
+        lp(j,i+1,len){
+            if(str[i]>str[j])cnt++;
+            //cout<<str[i]<<" "<<str[j]<<" "<<cnt<<endl;
+        }
+    }
+    return cnt;
+}
+bool comp(const Order& s1, const Order& s2){
+    if(s1.inversion!=s2.inversion)return s1.inversion<s2.inversion;
+    return s1.pos<s2.pos;
+}
+
+int main()
+{
+    ll t_cas, nb, len;
+    string str[101];
+    sint(t_cas);
+    cout<<endl;
+    while(t_cas--)
+    {
+        sint(len);sint(nb);
+        lp(i,0,nb)
+        {
+            cin>>str[i];
+            lis[i].pos=i;
+            lis[i].inversion=getInversion(str[i],len);
+
+        }
+        sort(lis,lis+nb,comp);
+        lp(i,0,nb)cout<<str[lis[i].pos]<<endl;
+        if(t_cas)cout <<endl;
+
+    }
+
+
+    return 0;
+}
