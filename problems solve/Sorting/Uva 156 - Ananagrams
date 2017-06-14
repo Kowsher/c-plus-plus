@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define sint(n) scanf("%lld", &n)
+#define lp(i,a,n) for(ll i=a; i<n; i++)
+using namespace std;
+
+int main()
+{
+    string s;
+    multimap<string, string> memo;
+    while (cin >> s, s != "#")
+    {
+        string t(s);
+        transform(s.begin(), s.end(), t.begin(), ::tolower);
+        sort(t.begin(), t.end());
+        memo.insert(make_pair(t,s));
+    }
+
+    multimap<string, string>::iterator iter(memo.begin());
+    vector<string> ananagrams;
+    for (; iter != memo.end(); ++iter)
+        if (memo.count(iter->first) == 1)
+            ananagrams.push_back(iter->second);
+
+    sort(ananagrams.begin(), ananagrams.end());
+    for(auto& x: ananagrams)cout<<x<<endl;
+   
+    return 0;
+}
