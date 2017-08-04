@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include<bits/stdc++.h>
+using namespace std;
+
+
+string sst;
+map<string,int>mp;
+void combinationUtil(string str, char data[], int start, int end,
+					int index, int r);
+void printCombination(string str, int len, int r)
+{
+	char data[r];
+	combinationUtil(str, data, 0, len-1, 0, r);
+}
+
+void combinationUtil(string str, char data[], int start, int end,
+					int index, int r)
+{
+	if (index == r)
+	{
+		for (int j=0; j<r; j++){
+			sst=sst+data[j];
+		}
+        sort(sst.begin(),sst.end());
+
+
+        mp[sst]++;
+
+        if(mp[sst]==1)cout<<sst<<endl;
+
+        sst.clear();
+
+		return;
+	}
+
+	for (int i=start; i<=end && end-i+1 >= r-index; i++)
+	{
+		data[index] = str[i];
+		combinationUtil(str, data, i+1, end, index+1, r);
+	}
+}
+
+int main()
+{
+	string str;
+	cin>>str;
+	int r;
+	cin>>r;
+    int len=str.size();
+	printCombination(str, len, r);
+}
