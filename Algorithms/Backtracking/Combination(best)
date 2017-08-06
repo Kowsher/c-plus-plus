@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+ string str; int r;
+ vector<char>ch;
+void combination( int start)
+{
+    if(ch.size()==r)
+    {
+        for(char & c: ch){cout<<c;}
+        cout<<endl;
+        return;
+    }
+    for(int i=start; i<str.size(); )
+    {
+        char c=str[i];
+        ch.push_back(c);
+
+        combination(i+1);
+        ch.pop_back();
+
+        while(c==str[i])i++;
+    }
+}
+int main()
+{
+
+    while(cin>>str>>r)
+    {
+       sort(str.begin(),str.end());
+
+        combination(0);
+    }
+
+
+
+
+    return 0;
+}
