@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int queen[20], column[20], diagonal1[20], diagonal2[20];
+
+void nqueen(int at, int n)
+{
+    if(at==n)
+    {
+        printf("(row, column) = ");
+        for(int i=0; i<n; i++)printf("(%d %d) ", i, queen[i]);
+        printf("\n");
+        return;
+    }
+
+    for(int i=0; i<n; i++)
+    {
+        if(column[i] || diagonal1[i+at] || diagonal2[n+i-at])continue;
+        queen[at]=i;
+        column[i]=diagonal1[i+at]=diagonal2[n+i-at]=1;
+        nqueen(at+1, n);
+        column[i]=diagonal1[i+at]=diagonal2[n+i-at]=0;
+
+    }
+}
+
+
+int main()
+{
+    memset(column,0,20);
+    memset(diagonal1,0,20);
+    memset(diagonal2,0,20);
+    int n;
+    cin>>n;
+
+
+    nqueen(0,n);
+
+    return 0;
+}
