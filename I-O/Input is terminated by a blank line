@@ -6,6 +6,7 @@ int main(){
 
 
     string str;
+    cin.ignore();
     while(getline(cin,str))
     {
         if (str == "") { break; }
