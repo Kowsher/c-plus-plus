@@ -18,8 +18,7 @@ bool Union(int a,int b){
  int u=finding(a);
  int v=finding(b);
 
-  if(u==v){return false;}
-  else{parent[u]=v;}
+  if(u!=v){parent[u]=v;}
 }
 bool quary(int a, int b)
 {
@@ -45,6 +44,7 @@ int main(){
 
     if(quary(a,b))cout<<"Friend"<<endl;
     else cout<<"Not Friend"<<endl;
+
 
   }
 }
