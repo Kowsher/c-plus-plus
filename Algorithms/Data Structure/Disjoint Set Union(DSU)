@@ -23,6 +23,13 @@ bool Union(int a,int b){
   if(u==v){return false;}
   else{parent[u]=v;}
 }
+bool quary(int a, int b)
+{
+    int u=finding(a);
+    int v=finding(b);
+
+  if(u!=v){return false;}
+}
 
 int main(){
 
@@ -37,7 +44,9 @@ int main(){
   cout<<"Enter the number of Query friend :"; cin>>t;
   while(t--){
     cin>>a>>b;
-    if(Union(a,b)==true)cout<<"Not Friend"<<endl;
-    else cout<<"Friend"<<endl;
+
+    if(quary(a,b))cout<<"Friend"<<endl;
+    else cout<<"Not Friend"<<endl;
+
   }
 }
