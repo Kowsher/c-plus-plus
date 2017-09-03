@@ -1,0 +1,102 @@
+#include<bits/stdc++.h>
+using namespace std;
+///*****    I/O  ********************/////
+#define RI(X) scanf("%d", &(X))
+#define RII(X, Y) scanf("%d%d", &(X), &(Y))
+#define RIII(X, Y, Z) scanf("%d%d%d", &(X), &(Y), &(Z))
+#define DRI(X) int (X); scanf("%d", &X)
+#define DRII(X, Y) int X, Y; scanf("%d%d", &X, &Y)
+#define DRIII(X, Y, Z) int X, Y, Z; scanf("%d%d%d", &X, &Y, &Z)
+#define RS(X) scanf("%s", (X))
+#define ENDL()           printf("\n")
+///************ LOOP *************/////
+#define REP(I, N) for (int I = 0; I < (N); I++)
+#define REPP(I, A, B) for (int I = (A); I < (B); I++)
+///********* SORT ****************////
+#define ALL(X) (X).begin(), (X).end()
+///********* SIZE ****************////
+#define SZ(X) ((int)(X).size())
+///********** define ***********////
+#define WHITE 0
+#define GRAY 1
+#define BLACK 2
+#define SQR(x) ((x)*(x))
+#define PI 2*acos(0)
+#define EPS 1e-7
+#define infinity (1<<28)
+///********* typedef ***********///
+typedef long long LL;
+typedef unsigned int U32;
+typedef unsigned long long ULL;
+typedef vector<int> VI;
+typedef vector<LL> VLL;
+typedef vector<double> VD;
+typedef vector<char> VC;
+typedef vector<string> VS;
+typedef vector<vector<int> > VVI;
+typedef map<int, int> MII;
+typedef map<string, int> MSI;
+typedef map<int, string> MIS;
+typedef map<string, string> MSS;
+typedef map<string, char> MSC;
+typedef pair <int, int > PII;
+
+
+int parent[100001];
+
+
+
+int main()
+{
+    DRII(n,m);
+
+    MII bp,gp;
+    int mx=max(n,m);
+    int l=mx*mx;
+    mx++;
+    int barry[mx], garry[mx];
+
+    DRI(nb);
+    REP(i,nb)
+    {
+        int a;
+        RI(a);
+        parent[a]=mx;
+
+    }
+    DRI(ng);
+    REP(i,ng)
+    {
+        int a;
+        RI(a);
+         parent[a]=mx;
+
+    }
+    int modb,modg;
+    REP(i,l)
+    {
+        modb=i%n;
+        modg=i%m;
+
+        if(parent[modb] || parent[modg])
+        {
+            parent[modb] =mx; parent[modg]=mx;
+        }
+
+    }
+    REP(i,mx-1)
+    {
+
+        if(!parent[i]){cout<<"NO"<<endl; return 0;}
+    }
+    cout<<"YES"<<endl;
+
+
+
+
+
+
+
+
+    return 0;
+}
