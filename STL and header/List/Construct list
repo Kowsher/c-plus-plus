@@ -20,6 +20,8 @@ int main()
     /// the iterator constructor can also be used to construct from arrays:
    int myints[] = {16,2,77,29};
    list<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
+   
+    list<int>six(3); ///ist of 3 zero-initialized ints
 
 
 
