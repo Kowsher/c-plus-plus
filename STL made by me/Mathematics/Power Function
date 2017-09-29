@@ -1,0 +1,5 @@
+int PowerFunction(int x, int y)
+{
+    if(y==0)return 1;
+    return x*PowerFunction(x, y-1);
+}
