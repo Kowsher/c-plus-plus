@@ -1,0 +1,71 @@
+#include<bits/stdc++.h>
+using namespace std;
+///*****    I/O  ********************/////
+#define RI(X) scanf("%d", &(X))
+#define RII(X, Y) scanf("%d%d", &(X), &(Y))
+#define RIII(X, Y, Z) scanf("%d%d%d", &(X), &(Y), &(Z))
+#define DRI(X) int (X); scanf("%d", &X)
+#define DRII(X, Y) int X, Y; scanf("%d%d", &X, &Y)
+#define DRIII(X, Y, Z) int X, Y, Z; scanf("%d%d%d", &X, &Y, &Z)
+#define RS(X) scanf("%s", (X))
+#define ENDL()           printf("\n")
+///************ LOOP *************/////
+#define REP(I, N) for (int I = 0; I < (N); I++)
+#define REPP(I, A, B) for (int I = (A); I < (B); I++)
+///********* SORT ****************////
+#define ALL(X) (X).begin(), (X).end()
+///********* SIZE ****************////
+#define SZ(X) ((int)(X).size())
+///********** define ***********////
+#define MS0(X) memset((X), 0, sizeof((X)))
+#define MS1(X) memset((X), -1, sizeof((X)))
+///*********** math ************///
+#define SQR(x) ((x)*(x))
+#define PI 2*acos(0)
+#define EPS 1e-7
+#define infinity (1<<28)
+///********* typedef ***********///
+typedef long long LL;
+typedef unsigned int U32;
+typedef unsigned long long ULL;
+typedef vector<int> VI;
+typedef vector<LL> VLL;
+typedef vector<double> VD;
+typedef vector<char> VC;
+typedef vector<string> VS;
+typedef vector<vector<int> > VVI;
+typedef map<int, int> MII;
+typedef map<char, int> MCI;
+typedef map<string, int> MSI;
+typedef map<int, string> MIS;
+typedef map<string, string> MSS;
+typedef map<string, char> MSC;
+typedef pair <int, int > PII;
+
+int sum=0;
+int Summetion(int in, int n, int arr[])
+{
+    if(in==n)return sum;
+    else{
+        sum=sum+arr[in];
+       // cout<<arr[in]<<endl;
+        in++;
+        Summetion(in,n,arr);
+    }
+}
+
+int main()
+{
+   DRI(t_cs);
+   for(int i=1; i<=t_cs; i++)
+   {
+       DRI(n);
+       int arr[n];
+       REP(i,n)RI(arr[i]);
+       cout<<"Case "<<i<<": "<<Summetion(0,n,arr)<<endl;
+       sum=0;
+
+   }
+
+    return 0;
+}
