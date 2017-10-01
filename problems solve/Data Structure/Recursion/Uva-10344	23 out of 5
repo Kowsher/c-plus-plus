@@ -1,0 +1,77 @@
+#include<bits/stdc++.h>
+using namespace std;
+///*****    I/O  ********************/////
+#define RI(X) scanf("%d", &(X))
+#define RII(X, Y) scanf("%d%d", &(X), &(Y))
+#define RIII(X, Y, Z) scanf("%d%d%d", &(X), &(Y), &(Z))
+#define DRI(X) int (X); scanf("%d", &X)
+#define DRII(X, Y) int X, Y; scanf("%d%d", &X, &Y)
+#define DRIII(X, Y, Z) int X, Y, Z; scanf("%d%d%d", &X, &Y, &Z)
+#define RS(X) scanf("%s", (X))
+#define ENDL()           printf("\n")
+///************ LOOP *************/////
+#define REP(I, N) for (int I = 0; I < (N); I++)
+#define REPP(I, A, B) for (int I = (A); I < (B); I++)
+///********* SORT ****************////
+#define ALL(X) (X).begin(), (X).end()
+///********* SIZE ****************////
+#define SZ(X) ((int)(X).size())
+///********** define ***********////
+#define MS0(X) memset((X), 0, sizeof((X)))
+#define MS1(X) memset((X), -1, sizeof((X)))
+///*********** math ************///
+#define SQR(x) ((x)*(x))
+#define PI 2*acos(0)
+#define EPS 1e-7
+#define infinity (1<<28)
+///********* typedef ***********///
+typedef long long LL;
+typedef unsigned int U32;
+typedef unsigned long long ULL;
+typedef vector<int> VI;
+typedef vector<LL> VLL;
+typedef vector<double> VD;
+typedef vector<char> VC;
+typedef vector<string> VS;
+typedef vector<vector<int> > VVI;
+typedef map<int, int> MII;
+typedef map<char, int> MCI;
+typedef map<string, int> MSI;
+typedef map<int, string> MIS;
+typedef map<string, string> MSS;
+typedef map<string, char> MSC;
+typedef pair <int, int > PII;
+
+
+
+int arr[5];
+bool Search(int pos, int sum)
+{
+    if(pos==5)
+    {
+        if(sum==23)return true;
+        else return false;
+    }
+    int num=arr[pos];
+     Search(pos+1,sum+num) || Search(pos+1, sum-num)|| Search(pos+1, sum*num);
+
+}
+int main()
+{
+    while(1){
+        RII(arr[0],arr[1]);RIII(arr[2],arr[3],arr[4]);
+        int ck=0;
+        if(arr[0]==0 && arr[1]==0&& arr[2]==0 && arr[3]==0 && arr[4]==0)break;
+        sort(arr,arr+5);
+        do
+        {
+            //cout<<arr[i]<<endl;
+            if(Search(1,arr[0])){ ck=1; break;}
+        }while (next_permutation(arr, arr + 5));
+
+        if(ck==1)cout<<"Possible"<<endl;
+        else cout<<"Impossible"<<endl;
+    }
+
+    return 0;
+}
