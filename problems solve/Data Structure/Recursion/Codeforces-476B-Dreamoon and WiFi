@@ -1,0 +1,110 @@
+#include<bits/stdc++.h>
+using namespace std;
+///*****    I/O  ********************/////
+#define RI(X) scanf("%d", &(X))
+#define RII(X, Y) scanf("%d%d", &(X), &(Y))
+#define RIII(X, Y, Z) scanf("%d%d%d", &(X), &(Y), &(Z))
+#define DRI(X) int (X); scanf("%d", &X)
+#define DRII(X, Y) int X, Y; scanf("%d%d", &X, &Y)
+#define DRIII(X, Y, Z) int X, Y, Z; scanf("%d%d%d", &X, &Y, &Z)
+
+#define RLI(X) scanf("%lld", &(X))
+#define RLII(X, Y) scanf("%lld%lld", &(X), &(Y))
+#define RLIII(X, Y, Z) scanf("%lld%lld%lld", &(X), &(Y), &(Z))
+#define DRLI(X) long long int (X); scanf("%lld", &X)
+#define DRLII(X, Y) long long int X, Y; scanf("%lld%lld", &X, &Y)
+#define DRLIII(X, Y, Z) long long int X, Y, Z; scanf("%lld%lld%lld", &X, &Y, &Z)
+
+
+#define RS(X) scanf("%s", (X))
+#define ENDL()           printf("\n")
+///************ LOOP *************/////
+#define REP(I, N) for (int I = 0; I < (N); I++)
+#define REPP(I, A, B) for (int I = (A); I < (B); I++)
+///********* SORT ****************////
+#define ALL(X) (X).begin(), (X).end()
+///********* SIZE ****************////
+#define SZ(X) ((int)(X).size())
+///********** define ***********////
+#define MS0(X) memset((X), 0, sizeof((X)))
+#define MS1(X) memset((X), -1, sizeof((X)))
+///*********** math ************///
+#define SQR(x) ((x)*(x))
+#define PI 2*acos(0)
+#define EPS 1e-7
+#define infinity (1<<28)
+///********* typedef ***********///
+typedef long long LL;
+typedef unsigned int U32;
+typedef unsigned long long ULL;
+typedef vector<int> VI;
+typedef vector<LL> VLL;
+typedef vector<double> VD;
+typedef vector<char> VC;
+typedef vector<string> VS;
+typedef vector<vector<int> > VVI;
+typedef map<int, int> MII;
+typedef map<double,int>MDI;
+typedef map<char, int> MCI;
+typedef map<string, int> MSI;
+typedef map<int, string> MIS;
+typedef map<string, string> MSS;
+typedef map<string, char> MSC;
+typedef pair <int, int > PII;
+
+MDI cnt;int sz=0;
+int fun(double val, int pos, int last, double iq)
+{
+    if(pos==last)
+    {
+        sz++;
+        val=val+iq;
+        cnt[val]++;
+
+        return val;
+    }
+     fun(val+0.5, pos+1, last,iq),fun(val-0.5,pos+1,last,iq);
+}
+
+int main()
+{
+  string dream, drazil;
+  cin>>drazil>>dream;
+  int len=dream.size();
+  int  dream_plus=0,dream_minus=0, drazil_plus=0,drazil_minus=0;
+  double dream_val=0, drazil_val=0, last=0;
+  REP(i,len)
+  {
+      if(dream[i]=='+'){dream_val=dream_val+0.5; dream_plus++;}
+      if(dream[i]=='-'){dream_val=dream_val-0.5;dream_minus++;}
+      if(dream[i]=='?')last++;
+      if(drazil[i]=='+'){drazil_val=drazil_val+0.5;drazil_plus++;}
+      if(drazil[i]=='-'){drazil_val=drazil_val-0.5;drazil_minus++;}
+
+  }
+  //cout<<drazil_val<<" "<<dream_val<<" "<<last<<endl;
+  if(drazil_val==dream_val && last==0)
+  {
+      double vl=1;
+      cout<<fixed<<setprecision(12)<<vl<<endl;return 0;
+  }
+  if(drazil_val!=dream_val && last==0)
+  {     double vl=0;
+      cout<<fixed<<setprecision(12)<<vl<<endl;return 0;
+  }
+  if(last!=0 && drazil_plus<dream_plus || drazil_minus<dream_minus){
+        double vl=0;
+      cout<<fixed<<setprecision(12)<<vl<<endl;return 0;
+  }
+  if(last!=0 && drazil_plus>=dream_plus && drazil_minus>=dream_minus)
+  {
+
+      fun(0.5,1,last,dream_val);
+      fun(-0.5,1,last,dream_val);
+
+      double vl = (double)cnt[drazil_val]/(double)sz;
+      cout<<fixed<<setprecision(12)<<vl<<endl;
+
+
+  }
+}
