@@ -11,7 +11,7 @@ void Subset(int *A, int len, int index)
             return;
     }
     Subset(A, len,  index+1);
-    print.push_back(index);
+     print.push_back(A[index});
     Subset(A, len, index+1);
     print.pop_back();
 }
