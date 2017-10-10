@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int>print;
+void Subset(int *A, int len, int index)
+{
+    if (index >= len+1)
+    {
+          for(auto&x: print)cout<<x<<" ";
+            printf("\n");
+            return;
+    }
+    Subset(A, len,  index+1);
+    print.push_back(index);
+    Subset(A, len, index+1);
+    print.pop_back();
+}
+
+
+
+int main()
+{
+    int A[] = {1, 2, 3};
+    int B[3] = {0};
+
+    Subset(A, 3, 1);
+}
