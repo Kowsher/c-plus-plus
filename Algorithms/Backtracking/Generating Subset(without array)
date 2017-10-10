@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int>print;
+int Subset(int start, int last)
+{
+    if(start==last)
+    {
+        for(auto&x: print)cout<<x<<" ";
+        cout<<endl;
+    }
+    else
+    {
+        Subset(start+1,last);
+        print.push_back(start);
+        Subset(start+1,last);
+        print.pop_back();
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+
+    Subset(0,n);
+
+    return 0;
+}
