@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool chosen[20];
+vector<int>permutation;
+int n;
+void search()
+{
+    if (permutation.size() == n)
+    {
+        for(auto&x: permutation)cout<<x<<" ";
+        cout<<endl;
+    }
+    else
+    {
+        for (int i = 1; i <= n; i++)
+        {
+            if (chosen[i]) continue;
+            chosen[i] = true;
+            cout<<endl;
+            permutation.push_back(i);
+            search();
+            chosen[i] = false;
+            permutation.pop_back();
+        }
+    }
+}
+int main()
+{
+
+    cin>>n;
+    search();
+
+    return 0;
+}
