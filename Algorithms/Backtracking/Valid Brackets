@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+
+void Brackets(string output, int open, int close, int pairs)
+{
+	
+	if((open==pairs)&&(close==pairs))
+	{
+		cout<<output<<endl;
+	}
+	else
+	{
+		if(open<pairs)
+		{
+			Brackets(output + "(", open+1, close, pairs);
+		}
+			
+		if(close<open)
+		{
+			Brackets(output + ")", open, close+1, pairs);
+		}
+	}
+}
+
+int main(int argc, const char * argv[])
+{
+	Brackets("",0,0,3);
+}
