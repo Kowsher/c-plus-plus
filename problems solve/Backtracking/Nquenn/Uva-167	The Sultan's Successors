@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int queen[20], column[20], diagonal1[20], diagonal2[20];
+vector <int> validBoard [1000];
+int vIndex = 0;
+void nqueen(int at, int n)
+{
+    if(at==n)
+    {
+        for(int i=0; i<n; i++) validBoard [vIndex].push_back (queen [i]);
+        vIndex++;
+
+    }
+/
+    for(int i=0; i<n; i++)
+    {
+        if(column[i] || diagonal1[i+at] || diagonal2[n+i-at])continue;
+        queen[at]=i;
+        column[i]=diagonal1[i+at]=diagonal2[n+i-at]=1;
+        nqueen(at+1, n);
+        column[i]=diagonal1[i+at]=diagonal2[n+i-at]=0;
+
+    }
+}
+
+
+int main ()
+{
+    memset(column,0,20);
+    memset(diagonal1,0,20);
+    memset(diagonal2,0,20);
+    nqueen(0,8);
+
+    int k;
+    scanf ("%d", &k);
+
+    int board [8] [8];
+
+    while ( k-- )
+    {
+        for ( int i = 0; i < 8; i++ )
+        {
+            for ( int j = 0; j < 8; j++ )
+            {
+                scanf ("%d", &board [i] [j]);
+            }
+        }
+
+        int max = 0;
+        int count;
+
+        for ( int i = 0; i < vIndex; i++ )
+        {
+            count = 0;
+            for ( int j = 0; j < 8; j++ )
+                count += board [j] [validBoard [i] [j]];
+            if ( count > max )
+                max = count;
+        }
+
+        printf ("%5d\n", max);
+    }
+
+    return 0;
+}
