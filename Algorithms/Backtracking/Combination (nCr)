@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int number[20];
+int n,k;
+
+void Combination(int at, int last)
+{
+    if(at==k+1)
+    {
+        for(int i=1; i<=k; i++)printf("%d", number[i]);
+        printf("\n");
+        return;
+    }
+    for(int i=last+1; i<=n-k+at; i++)
+    {
+        number[at]=i;
+        Combination(at+1, i);
+    }
+}
+int main()
+{
+    cin>>n>>k;
+    Combination(1,0);
+
+
+    return 0;
+}
