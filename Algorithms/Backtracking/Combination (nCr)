@@ -8,12 +8,13 @@ void Combination(int at, int last)
 {
     if(at==k+1)
     {
-        for(int i=1; i<=k; i++)printf("%d", number[i]);
+        for(int i=1; i<=k; i++)printf("%d ", number[i]);
         printf("\n");
         return;
     }
-    for(int i=last+1; i<=n-k+at; i++)
+    for(int i=last+1; i<=n; i++)
     {
+
         number[at]=i;
         Combination(at+1, i);
     }
