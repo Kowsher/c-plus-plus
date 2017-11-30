@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+template<typename T>
+void is_s(vector<T>&v, const T& ind)
+{
+    auto pos=lower_bound(begin(v),end(v),ind);
+    v.insert(pos,ind);
+}
+
+int main()
+{
+   vector<int>v{3,7,1,9};
+   sort(begin(v),end(v));
+   is_s(v,2);
+   for(int i:v)cout<<i<<" ";
+    return 0;
+}
