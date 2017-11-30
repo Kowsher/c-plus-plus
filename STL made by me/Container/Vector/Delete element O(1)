@@ -1,0 +1,8 @@
+template <typename T>
+void quick_remove_at(vector<T>&v, const T & idx)
+{
+    if (idx < v.size()) {
+        v[idx] = move(v.back());
+        v.pop_back();
+}
+}
