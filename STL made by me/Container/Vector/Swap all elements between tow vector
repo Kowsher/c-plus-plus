@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+template<typename T>
+void Swap(vector<T>&v, vector<T>&v2){
+    v.swap(v2);
+}
+int main()
+{
+    vector<int>v,v2;
+   for(int i=0; i<4; i++)
+   {
+       v.push_back(i);
+   }
+   Swap(v,v2);
+   for(int i=0; i<4; i++)
+   {
+       cout<<v2[i]<<endl;
+   }
+}
