@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node* next;
+};
+
+Node* Insert(int x, int indx, Node* head)
+{
+   Node* temp=new Node();
+   temp->data=x;
+   if(indx==1)
+   {
+       temp->next=head;
+       head=temp;
+       return head;
+   }
+   Node* temp2=head;
+   for(int i=0; i<indx-2; i++)
+   {
+       temp2=temp2->next;
+   }
+   temp->next=temp2->next;
+   temp2->next=temp;
+}
+
+
+Node* Reverse(Node *p)
+{
+    if(p->next==NULL)
+    {
+
+        return p;
+    }
+    Node* head=Reverse(p->next);
+    Node *previous=p->next;
+    previous->next=p;
+    p->next=NULL; ///delete the previous link
+    return head;
+
+}
+
+void Print(Node *p)
+{
+    if(p==NULL)return;
+   printf("%d ",p->data);
+   Print(p->next);
+
+}
+int main()
+{
+     Node* head=NULL;
+    head=Insert(2,1, head); ///list is 2
+    head=Insert(3,2, head); ///list is 2,3
+    head=Insert(4,1,head);///list is 4,2,3
+    head=Insert(5,2,head);///list is 4,5,2,3
+   // head = Reverse(head);
+    //Print(head);
+    head=Reverse(head);
+    Print(head);
+}
