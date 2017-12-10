@@ -1,0 +1,34 @@
+
+///Adjacency matrix is best when the graph is dense. the time complexity of connected is O(1), but space complexity O(v^2)
+///if vertex are string or number then have to use Hashing for const time O(1)
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    printf("Input the number of vertex: ");
+    int n,a,b,m;
+    scanf("%d", &n);
+    int matrix[n][n]={0};
+    printf("Input the number of edge: ");
+    scanf("%d", &m);
+    printf("Input connected node\n");
+    for(int i=0; i<m; i++)
+    {
+        scanf("%d %d", &a, &b);
+        matrix[a][b]=1;
+        matrix[b][a]=1;
+    }
+    printf("input the number of search: ");
+    scanf("%d", &m);
+    printf("input the vertex to check they are connected or not\n");
+    for (int i=0; i<m; i++)
+    {
+        scanf("%d %d", &a, &b);
+        if(matrix[a][b]==1)printf("Connected\n");
+        else printf("Not connected\n");
+    }
+
+    return 0;
+}
