@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int x;
+int Modulo(int x, int n, int m)
+{
+    if(n==0)
+    {
+        return 1;
+    }
+    if(n%2==0)
+    {
+        x= Modulo(x,n/2,m);
+        return (x*x)%m;
+    }
+    else
+    {
+        x=(x%m)*Modulo(x,(n-1)/2,m)%m;
+        return x%m;
+    }
+}
+
+int main()
+{
+   cout<<Modulo(2,7,3)<<endl;
+   //cout<<128%3<<endl;
+
+
+
+    return 0;
+}
