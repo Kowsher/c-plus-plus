@@ -1,0 +1,15 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int Power(int x, int n)
+{
+    if(n==1)return x;
+    return x*Power(x,n-1);
+}
+
+int main()
+{
+    cout<<Power(2,3)<<endl;
+
+    return 0;
+}
