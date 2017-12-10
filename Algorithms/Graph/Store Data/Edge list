@@ -1,0 +1,36 @@
+///as the maximum numbers of edge is n*(n-1) so the time complexity is O(n^2)
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Graph
+{
+    string Start,End;
+    int wight;
+};
+
+int main()
+{
+    int n;
+    printf("Enter the  number of vertex :");
+    scanf("%d", &n);
+    struct Graph Edge[n];
+    printf("Enter the vertex name and its wight\n");
+    for(int i=0; i<n; i++){
+        //scanf("%s %s %d",Edge[i].Start,Edge[i].End,Edge[i].wight);
+    cin>>Edge[i].Start>>Edge[i].End>>Edge[i].wight;
+    }
+    printf("search graph with its wight and their connect. enter the name of graph \n");
+    string st1,st2;
+    cin>>st1>>st2;
+
+    for(int i=0; i<n; i++)
+    {
+        if(Edge[i].Start==st1 && Edge[i].End==st2){
+            printf("The graph is connected and its wight is %d\n", Edge[i].wight);
+            return 0;
+        }
+    }
+    printf("Not connected\n");
+
+    return 0;
+}
