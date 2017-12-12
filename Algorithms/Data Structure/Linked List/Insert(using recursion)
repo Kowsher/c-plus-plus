@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node* next;
+};
+
+Node* Insert(int x, int indx, Node* head)
+{
+   if(indx==1)
+   {
+       Node* temp=new Node();
+       temp->data=x;
+       temp->next=head;
+       return temp;
+   }
+   head->next = Insert(x, indx-1, head->next);
+   return head;
+}
+
+
+
+void Print(Node *p)
+{
+    if(p==NULL)return;
+   printf("%d ",p->data);
+   Print(p->next);
+
+}
+int main()
+{
+    Node* head=NULL;
+
+    head=Insert(2,1, head); ///list is 2
+
+    head=Insert(3,2, head); ///list is 2,3
+
+    head=Insert(4,1, head);///list is 4,2,3
+
+    head=Insert(5,2, head);///list is 4,5,2,3
+
+    Print(head);
+}
