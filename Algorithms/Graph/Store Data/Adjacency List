@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data,wight;
+    Node* next;
+};
+
+Node* Insert(int x,int value, Node* head)
+{
+   Node* temp=new Node;
+    temp->data=x;
+    temp->wight=value;
+    temp->next=head;
+    head=temp;
+}
+void Print(Node* head, int i)
+{
+    Node* temp=head;
+     printf("connected Node are : ");
+    while(temp != NULL)
+    {
+        printf("%d %d wight = %d\n",i,temp->data,temp->wight);
+        temp=temp->next;
+    }
+    printf("\n");
+}
+int main()
+{
+    Node *head[4]={NULL};///Number of vertex 4
+    printf("Enter the numbe of edge in 4 vertex ");
+    int n,u,v,wight;
+    scanf("%d", &n);
+    printf("Input the connected node and its wight\n");
+    for(int i=0; i<n; i++)
+    {
+        scanf("%d %d %d",&u,&v,&wight);
+        head[u]=Insert(v,wight, head[u]);
+    }
+    for(int i=0; i<4; i++)
+    {
+        Print(head[i],i);
+    }
+
+
+}
