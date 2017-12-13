@@ -9,24 +9,17 @@ struct Node
 
 Node* Insert(int x, Node* head)
 {
-   if(head==NULL)
+   if(head==NULL || head->data>=x)
    {
        Node* temp=new Node();
        temp->data=x;
        temp->next=head;
        return temp;
    }
-   else if(head->data>=x)
-   {
-       Node* temp=new Node();
-       temp->data=x;
-       temp->next=head;
-       return temp;
-   }
+
    head->next = Insert(x,  head->next);
    return head;
 }
-
 
 
 void Print(Node *p)
@@ -41,15 +34,10 @@ int main()
     Node* head=NULL;
 
     head=Insert(2,head); ///list is 2
-
     head=Insert(3, head); ///list is 2,3
-
     head=Insert(6, head);///list is 2,3,6
-
     head=Insert(5, head);///list is 2,3,5,6,
     head=Insert(1, head);///list is 1,2,3,5,6
-
-
 
     Print(head);
 }
