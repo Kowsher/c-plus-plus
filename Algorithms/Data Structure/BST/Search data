@@ -31,8 +31,8 @@ bool Search(int x, BstNode *root)
 {
     if(root==NULL)return false;
     if(root->data==x)return true;
-    else if(x<=root->data) return Search(x,root->left);
-    else return Search(x,root->right);
+    else if(x<=root->data) Search(x,root->left);
+    else Search(x,root->right);
 }
 int main()
 {
