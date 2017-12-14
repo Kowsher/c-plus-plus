@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define Max 100000
+vector<int>Edge[Max];
+int main()
+{
+	int u,v,n;
+	printf("Input the number of edge :");
+	scanf("%d", &n);
+	printf("Input the  connected node: \n");
+	for(int i=0; i<n; i++)
+    {
+        scanf("%d %d", &u, &v);
+        Edge[u].push_back(v);
+        //Edge[v].push_back(u);
+    }
+    printf("Input the number of search: ");
+    scanf("%d", &n);
+    while(n--)
+    {
+        scanf("%d %d", &u, &v);
+        for(int i=0; i<Edge[u].size(); i++)
+        {
+            puts(Edge[u][i]==v? "Connected\n":"Not connected\n");
+        }
+
+    }
+
+}
