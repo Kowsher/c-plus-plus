@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct BstNode
+{
+    int data;
+    BstNode *left,*right;
+};
+
+BstNode *GetNewNode(int x)
+{
+    BstNode *temp=new BstNode;
+    temp->data=x;
+    temp->left=temp->right=NULL;
+    return temp;
+
+}
+BstNode* Insert(int x,BstNode *root)
+{
+    if(root==NULL)
+    {
+        root=GetNewNode(x);
+        return root;
+    }
+    else if(x<=root->data) root->left=Insert(x,root->left);
+    else root->right=Insert(x,root->right);
+    return root;
+}
+bool Search(int x, BstNode *root)
+{
+    if(root==NULL)return false;
+    if(root->data==x)return true;
+    else if(x<=root->data) Search(x,root->left);
+    else Search(x,root->right);
+}
+
+int main()
+{
+     printf("Input the number of vertex: ");
+    int vertex,edge,u,v,n;
+    scanf("%d", &vertex);
+    BstNode* root[vertex]={NULL};
+    printf("Input the number of edge: ");
+    scanf("%d", &edge);
+    printf("Input the connected node\n");
+
+    for(int i=0; i<edge; i++)
+    {
+        scanf("%d %d", &u, &v);
+        root[u]=Insert(v,root[u]);
+    }
+    printf("Input the number of search: ");
+    scanf("%d", &n);
+    for(int i=0; i<n; i++)
+    {
+        scanf("%d %d",&u,&v);
+        if(Search(v,root[u])==true)cout<<"Connected"<<endl;
+        else cout<<"Not Connected"<<endl;
+    }
+
+
+
+}
