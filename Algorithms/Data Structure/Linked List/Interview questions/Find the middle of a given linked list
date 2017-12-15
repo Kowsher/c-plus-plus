@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node* next;
+};
+ Node* head=NULL;
+void Insert(int x, int indx)
+{
+   Node* temp=new Node();
+   temp->data=x;
+   if(indx==1)
+   {
+       temp->next=head;
+       head=temp;
+       return;
+   }
+   Node* temp2=head;
+   for(int i=0; i<indx-2; i++)
+   {
+       temp2=temp2->next;
+   }
+   temp->next=temp2->next;
+   temp2->next=temp;
+}
+void Print()
+{
+    Node* temp=head;
+    Node *temp2=head;
+     printf("the middle value is  : ");
+    while(1)
+    {
+        temp=(temp->next);
+        if(temp==NULL)
+        {
+            printf("%d", temp2->data);
+            return;
+        }
+        temp=temp->next;
+        if(temp==NULL)
+        {
+            printf("%d and", temp2->data);
+             temp2=temp2->next;
+            printf(" %d", temp2->data);
+            return;
+        }
+        temp2=temp2->next;
+    }
+    printf("\n");
+}
+int main()
+{
+    Insert(2,1); ///list is 2
+    Insert(3,2); ///list is 2,3
+    Insert(4,1);///list is 4,2,3
+    Insert(5,2);///list is 4,5,2,3
+    //Insert(6,4);///list is 4,5,2,6,3
+    Print();
+}
