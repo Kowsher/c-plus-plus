@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int>edge[100];
+bool visited[100];
+int level[100], parent[100];
+
+
+void path(int last)
+{
+    if(!parent[last])return;
+    last=parent[last];
+    path(last);
+    cout<<last<<endl;
+
+}
+int bfs(int start)
+{
+    queue<int>q;
+    q.push(start);
+    visited[start]=1;
+    level[start]=0;
+
+    while(!q.empty()){
+        int u=q.front();
+        cout<<u<<" ";
+        q.pop();
+        for(int i=0; i<edge[u].size();i++){
+            int v=edge[u][i];
+            if(visited[v]==0){
+                level[v] = level[u] + 1;
+				parent[v] = u;
+                visited[v]=1;
+                q.push(v);
+            }
+        }
+    }
+}
+int main()
+{
+    int e,u,v,start,node,last;
+    cout<<"Enter the edge of graph ";cin>>e;
+    cout<<"Input the connected node "<<endl;
+    for(int i=0; i<e; i++){
+        cin>>u>>v;
+        edge[u].push_back(v);
+        edge[v].push_back(u);
+    }
+    cout<<"Enter the node from starting ";cin>>start;
+    bfs(start);
+    cout<<"Enter the node to check level ";cin>>node;
+    cout<<level[node]<<endl;
+
+    cout<<"Enter the last value to visit there ";cin>>last;
+    cout<<"the shortest path are ";
+    path(last);
+
+
+    return 0;
+}
