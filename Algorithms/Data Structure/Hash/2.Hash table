@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{
+    int n,s;
+    printf("Input the size of array: ");
+    scanf("%d", &n);
+    int arr[n],mx=0;
+    for(int i=0; i<n; i++)
+    {
+        scanf("%d", &arr[i]);
+        mx=max(mx,arr[i]);
+    }
+    int HashTable[mx+1];
+    for(int i=0; i<n; i++)
+    {
+        HashTable[arr[i]]=1;
+    }
+
+    printf("Input number of search ");
+    scanf("%d", &n);
+    for(int i=0; i<n; i++)
+    {
+        scanf("%d", &s);
+        if(HashTable[s]==1)cout<<"Found"<<endl;
+        else cout<<"NOT found"<<endl;
+    }
+
+    return 0;
+}
