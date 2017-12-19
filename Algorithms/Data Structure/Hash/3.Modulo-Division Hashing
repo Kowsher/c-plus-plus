@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool HashFunction(int s,int HashTable[])
+{
+    if(HashTable[s%10]==1)return true;
+    else return false;
+}
+int Delete(int nub, int HashTable[])
+{
+    if(HashTable[nub%10]==1)return HashTable[nub%10]=0;
+}
+
+int main()
+{
+    int n,mx=0,s,nub;
+    cout<<"input the size of array : ";cin>>n;
+    int target[n];
+    cout<<"Input element "<<endl;
+    for(int i=0; i<n; i++)
+    {
+        cin>>target[i];
+        mx=max(target[i]%10,mx);
+    }
+    int HashTable[mx];
+    for(int i=0; i<n; i++)
+    {
+        HashTable[target[i]%10]=1;
+    }
+    cout<<"Input the search number : ";cin>>n;
+    for(int i=0; i<n; i++)
+    {
+        cin>>s;
+        if(HashFunction(s,HashTable))cout<<"Found"<<endl;
+        else cout<<"Not found"<<endl;
+    }
+
+    cout<<"Input the number of delete  : ";cin>>n;
+    for(int i=0; i<n; i++)
+    {
+        cin>>nub;
+        Delete(nub,HashTable);
+    }
+
+       cout<<"Input the search number : ";cin>>n;
+    for(int i=0; i<n; i++)
+    {
+        cin>>s;
+        if(HashFunction(s,HashTable))cout<<"Found"<<endl;
+        else cout<<"Not found"<<endl;
+    }
+
+
+    return 0;
+}
