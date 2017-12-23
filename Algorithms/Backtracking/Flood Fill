@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+char ch[100][100];
+
+void FloodFill(int i, int j)
+{
+    if(ch[i][j]!='#')return;
+    ch[i][j]='1';
+    if(ch[i+1][j]=='#') {FloodFill(i+1,j);}
+    if(ch[i-1][j]=='#') {FloodFill(i-1,j);}
+    if(ch[i][j+1]=='#') {FloodFill(i,j+1);}
+    if(ch[i][j-1]=='#') {FloodFill(i,j-1);}
+}
+int main()
+{
+    int m,n,cnt=0;
+    cin>>m>>n;
+
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            cin>>ch[i][j];
+
+        }
+    }
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            if(ch[i][j]=='#'){FloodFill(i,j);cnt++;}
+
+        }
+    }
+     for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            cout<<ch[i][j]<<" ";
+
+        }
+        cout<<endl;
+    }
+    cout<<cnt<<endl;
+
+
+
+    return 0;
+}
+
