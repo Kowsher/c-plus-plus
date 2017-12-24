@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int>store;
+int Subset(int arr[], int i, int ln, int current_sum, int target_sum)
+{
+    if(i==ln)
+    {
+        if(current_sum==target_sum)return 1;
+        else return 0;
+    }
+    if(current_sum>target_sum)return 0;
+    int no_take=Subset(arr,i+1,ln,current_sum, target_sum);
+    int take=Subset(arr, i+1, ln,current_sum+arr[i], target_sum);
+    return no_take+take;
+
+}
+int main()
+{
+    int arr[]={1,2,3,4};
+    int ln=4;
+    cout<<Subset(arr,0,ln,0,5);
+    return 0;
+}
+
