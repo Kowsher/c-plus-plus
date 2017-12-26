@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define Points pair<double,double>
+
+Points Intersection_Line(Points P, Points Q, Points R, Points S)
+{
+    double a1=Q.second-P.second; ///(x2-x1)
+    double b1=P.first-Q.first;///(y1-y2)
+    double c1=P.first*a1+P.second*b1; ///ax1+by1
+
+    double a2=S.second-R.second; ///(x2-x1)
+    double b2=R.first-S.first;///(y1-y2)
+    double c2=R.first*a2+R.second*b2; ///ax1+by1
+
+    double determinant = a1*b2 - a2*b1;
+
+    if (determinant == 0)
+    {
+        // The lines are parallel.
+        return make_pair(FLT_MAX, FLT_MAX);
+    }
+    else
+    {
+        double x = (b2*c1 - b1*c2)/determinant;
+        double y = (a1*c2 - a2*c1)/determinant;
+        return make_pair(x, y);
+    }
+}
+
+int main()
+{
+    Points P=make_pair(1,1);
+    Points Q=make_pair(4,4);
+    Points R=make_pair(1,8);
+    Points S=make_pair(2,4);
+
+    Points Intersection=Intersection_Line(P,Q,R,S); ///calls
+
+    if (Intersection.first == FLT_MAX && Intersection.second==FLT_MAX)
+    {
+        cout << "The given lines AB and CD are parallel.\n";
+    }
+    else
+    {
+        cout << "The intersection of the given lines is: ";
+        cout<<"(x,y) = (" <<Intersection.first<<","<<Intersection.second<<")"<<endl;
+    }
+
+}
