@@ -10,6 +10,16 @@ int main()
     cin>>p.x>>p.y;
     Point q;
     cin>>q.x>>q.y;
-    int nub_point=__gcd(q.x-p.x,q.y-p.y)+1;
-    cout<<nub_point<<endl;
+    int nub_point=__gcd(q.x-p.x,q.y-p.y);
+    cout<<nub_point+1<<endl;
+    int c=q.x-p.x, d=q.y-p.y;
+    int a=c/nub_point,b=c/nub_point;
+    nub_point++;
+    while(nub_point--)
+    {
+        cout<<p.x<<" "<<p.y<<endl;
+        p.x+=a;
+        p.y+=b;
+    }
+
 }
