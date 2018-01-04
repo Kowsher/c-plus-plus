@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node* link;
+};
+Node* top=NULL;
+void Push(int x)
+{
+    Node* temp=new Node;
+    temp->data=x;
+    temp->link=top;
+    top=temp;
+}
+void Pop()
+{
+
+    if(top==NULL)return;
+     Node* temp=top;
+     top=top->link;
+     free(temp);
+}
+void Print()
+{
+    Node* temp=top;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->link;
+    }
+    cout<<endl;
+}
+int main()
+{
+    Push(2);
+    Push(3);
+    Push(4);
+    Push(7);
+    Print();
+    Pop();
+    Print();
+}
