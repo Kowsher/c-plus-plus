@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+int tree[10000000];
+int arr[10000000];
+
+int Query(int idx){
+       int sum=0;
+       while(idx>0){
+             sum+=tree[idx];
+             idx -= idx & (-idx);
+       }
+       return sum;
+}
+void Update(int idx, int x, int n)
+{
+       while(idx<=n)
+       {
+             tree[idx]+=x;
+             idx += idx & (-idx);
+
+       }
+}
+int Ready(int n,int idx)
+{
+    while(idx<=n)
+    {
+
+        int bit=(idx & -idx);
+        tree[idx]=arr[idx]-arr[idx-bit];
+        idx++;
+    }
+}
+int main()
+{
+    int n=8;
+    arr[0]=0;
+    for(int i=1; i<=10; i++)
+    {
+        arr[i]+=arr[i-1]+i;
+    }
+    Ready(10,1);
+    cout<<Query(10)<<endl;
+    Update(1,1,10);
+    cout<<Query(10)<<endl;
+}
