@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+#include<math.h>
+using namespace std;
+
+void Newton_Rapshon_method(float x)
+{
+    float c=1e5,current_vl,j=1, previous_vl=0.0;
+    while(c>0.00000001)
+    {
+        current_vl=(10+sin(x)-x*cos(x))/(10-cos(x));
+        c=fabs(current_vl-previous_vl);
+        previous_vl=current_vl;
+    }
+     printf("The approx root is %f ", current_vl);
+}
+int main()
+{
+    float x;
+    printf("the initial guess: ");
+    scanf("%f", &x);
+    Newton_Rapshon_method(x);
+}
