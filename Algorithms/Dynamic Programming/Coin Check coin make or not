@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int make,arr[]={4,2,8},n=3;
+
+
+void Call(int amount, int i)
+{
+    //out<<amount<<" "<<make<<endl;
+    if(amount==make){
+        puts("Yes");
+        exit(0);
+    }
+    else if(amount>make)return;
+
+    for(int i=0; i<n; i++)
+    {
+        if(dp[i][amount]!=1)Call(amount+arr[i], i);
+    }
+
+    puts("No");
+    exit(0);
+
+}
+
+int main()
+{
+    while(cin>>make)
+    {
+        Call(0,0);
+    }
+}
