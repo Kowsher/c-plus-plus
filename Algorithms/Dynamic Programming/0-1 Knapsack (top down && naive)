@@ -2,6 +2,8 @@
 using namespace std;
 int wt[100],vl[100],cap,n;
 
+///not optimal. complexity O(2^n)
+
 int KnapSack(int i, int w)
 {
     if(i==n+1)return 0;
