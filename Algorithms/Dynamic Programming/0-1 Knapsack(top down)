@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int wt[100],vl[100],cap,n;
+int dp[100][100];
+
+///complexity O(number of item * wight)
+int KnapSack(int i, int w)
+{
+    if(i==n+1)return dp[i][w]=0;
+
+    if(dp[i][w]!=-1)return dp[i][w];
+    else if(w+wt[i]>cap)return dp[i][w]=KnapSack(i+1,w);
+    else return dp[i][w]=max(vl[i]+KnapSack(i+1,w+wt[i]), KnapSack(i+1,w));
+}
+int main()
+{
+    memset(dp,-1,sizeof(dp));
+    cout<<"Input the number of item and capacity : ";
+    cin >> n >> cap;
+    cout<<"Input the wight and its value according to item number " <<endl;
+    for (int i=1; i<=n; i++){
+        cin >> wt[i]>>vl[i];
+    }
+    cout<<KnapSack(0,0);
+    return 0;
+}
+0
