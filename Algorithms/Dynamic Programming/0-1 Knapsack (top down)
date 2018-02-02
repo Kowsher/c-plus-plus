@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int wt[100],vl[100],cap,n;
+
+int KnapSack(int i, int w)
+{
+    if(i==n+1)return 0;
+    if(w+wt[i]>cap)return KnapSack(i+1,w);
+    return max(vl[i]+KnapSack(i+1,w+wt[i]), KnapSack(i+1,w));
+}
+int main()
+{
+    cout<<"Input the number of item and capacity : ";
+    cin >> n >> cap;
+    cout<<"Input the wight and its value according to item number " <<endl;
+    for (int i=1; i<=n; i++){
+        cin >> wt[i]>>vl[i];
+    }
+    cout<<KnapSack(0,0);
+    return 0;
+}
