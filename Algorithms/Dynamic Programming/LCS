@@ -1,0 +1,29 @@
+///Complexity O(n*m) where n=a_ln, m=b_ln
+
+#include<bits/stdc++.h>
+using namespace std;
+#define mx 100
+string a_str, b_str;
+int a_ln, b_ln;
+int dp[mx][mx];
+
+int LCS(int i, int j)
+{
+    if(a_str[i]==NULL or b_str[j]==NULL)return 0;
+
+    if(dp[i][j]!=0)return dp[i][j];
+    else if(a_str[i]==b_str[j]) dp[i][j]=1+LCS(i+1, j+1);
+    else dp[i][j]=max(LCS(i+1,j),LCS(i,j+1));
+
+    return dp[i][j];
+}
+
+int main()
+{
+    cin>>a_str>>b_str;
+    a_ln=a_str.size();
+    b_ln=b_str.size();
+    cout<<LCS(0,0);
+
+    return 0;
+}
