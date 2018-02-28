@@ -1,12 +1,18 @@
 #include<bits/stdc++.h>
 using namespace std;
+int subarr[1000][1000];
 
+/**
+ complexity O(sum*n)
+ space O(sum*n)
+ path complexity O(n)
+*/
 
 int  IsSubarrSum(int n, int sum, int arr[])
 {
     // The value of subarr[i][j] will be true if there is a
     // subarr of arr[0..j-1] with sum equal to i
-    int subarr[n+1][sum+1];
+
 
     // If sum is 0, then answer is true
     for (int i = 0; i <= n; i++)subarr[i][0] = 1;
@@ -31,6 +37,24 @@ int  IsSubarrSum(int n, int sum, int arr[])
 
      return subarr[n][sum];
 }
+void Path(int n, int sum, int arr[])
+{
+    while(n>=1)
+    {
+        if(subarr[n][sum]==subarr[n-1][sum])
+        {
+
+            n--;
+        }
+        else
+        {
+            cout<<arr[n-1]<<" ";
+
+            sum=sum-arr[n-1];
+            n--;
+        }
+    }
+}
 int main()
 {
     int n, sum; /// number of element of arr;
@@ -41,6 +65,7 @@ int main()
          cin>>arr[i];
     }
     IsSubarrSum(n,sum,arr)?puts("Yes"):puts("No");
+    Path(n,sum, arr);
 
 
     return 0;
