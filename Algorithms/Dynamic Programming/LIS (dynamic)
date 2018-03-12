@@ -1,0 +1,48 @@
+/* Dynamic Programming C/C++ implementation of len problem */
+///time complexity O(n^2)
+#include<bits/stdc++.h>
+using namespace std;
+#define MX 1000
+
+int len[MX],sub_seq[MX],mx;
+
+int LIS( int arr[], int n )
+{
+    sub_seq[0]=-1;
+    int  i, j;
+
+    for (i = 0; i < n; i++)len[i]=1;
+
+    for (i = 1; i < n; i++ ){
+        for (j = 0; j < i; j++ ) {
+            if ( arr[i] > arr[j] && len[i] < len[j] + 1){
+                len[i] = len[j] + 1;
+                sub_seq[i]=j;
+            }
+
+        }
+
+        mx=max(mx,len[i]);
+    }
+
+    free(len);
+
+    return mx;
+}
+void Path(int n, int arr[],int i)
+{
+
+    if(i>mx)return;
+    Path(sub_seq[n], arr, ++i);
+    cout<<arr[n]<<" ";
+}
+
+int main()
+{
+    int arr[] = {120, 0, 4, 12, 2, 21, 10, 6, 9,13,3,11,7,15 };
+    int n = sizeof(arr)/sizeof(arr[0]);
+    printf("Length of len is %d \n", LIS( arr, n ) );
+
+    Path(n-1, arr, 1);
+    return 0;
+}
