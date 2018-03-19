@@ -1,0 +1,88 @@
+// A Dynamic Programming based C++ program to find minimum
+// number operations to convert str1 to str2
+///time complexity Time Complexity: O(m x n)
+///Auxiliary Space: O(m x n)
+#include<bits/stdc++.h>
+using namespace std;
+
+int dp[1000][1000];
+
+
+int min(int x, int y, int z)
+{
+    return min(min(x, y), z);
+}
+
+int editDistDP(string str1, string str2, int m, int n)
+{
+
+  for (int i=0; i<=m; i++)
+    {
+        for (int j=0; j<=n; j++)
+        {
+            if (i==0)dp[i][j] = j;
+            else if (j==0) dp[i][j] = i;
+            else if (str1[i-1] == str2[j-1]) dp[i][j] = dp[i-1][j-1];
+
+            else dp[i][j] = 1 + min(dp[i][j-1],  // Insert
+                                   dp[i-1][j],  // Remove
+                                   dp[i-1][j-1]); // Replace
+
+            cout<<dp[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
+    return dp[m][n];
+}
+void Path(string str1, string str2, int i, int j)
+{
+    //cout<<i<<" "<<j<<endl;
+    while(i!=-1 && j!=-1)
+    {
+        if(str1[i-1]==str2[j-1])
+        {
+            i--,j--;
+        }
+        else
+        {
+            int mn,a,b,c;
+            (j>0 && i>0)?a=dp[i-1][j-1]:a=INT_MAX;
+            (j>0)?b=dp[i][j-1]:b=INT_MAX;
+            (i>0)?c=dp[i-1][j]:c=INT_MAX;
+
+            mn=min(a,b,c);
+            
+
+            if(mn==dp[i][j-1])
+            {
+                cout<< "Insert "<<str2[j-1]<<endl;;
+                j--;
+            }
+            else if(mn==dp[i-1][j])
+            {
+                cout<< "remove "<<str1[i-1]<<endl;;
+                i--;
+            }
+            else
+            {
+                cout<< "replace "<<str1[i-1] <<" to "<< str2[j-1]<<endl;;
+                i--, j--;
+            }
+        }
+
+    }
+}
+
+
+int main()
+{
+    // your code goes here
+    string str1 = "saturday";
+    string str2 = "sunday";
+
+    cout << editDistDP(str1, str2, str1.length(), str2.length())<<endl;
+    Path(str1, str2, str1.length(), str2.length());
+
+    return 0;
+}
