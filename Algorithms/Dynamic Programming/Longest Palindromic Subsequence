@@ -1,0 +1,56 @@
+
+///Time complexity O(n^2)
+///space O(n^2)
+#include<bits/stdc++.h>
+using namespace std;
+int dp[100][100];
+
+int LPS(string str, int ln)
+{
+    for(int i=0; i<ln; i++)dp[i][i]=1;
+    int n=ln,m=1;
+    while(--n)
+    {
+        for(int i=0, j=m; i<n; i++, j++)
+        {
+            if(str[i]==str[j])dp[i][j]=2+dp[i+1][j-1];
+            else dp[i][j]=max(dp[i][j-1], dp[i+1][j]);
+
+        }
+        m++;
+    }
+
+   return dp[0][ln-1];
+}
+void Path(int n, int ln, string str)
+{
+    char arr[n];
+    int k=0,l=n-1,i=0, j=ln-1 ;
+    while(dp[i][j]!=0)
+    {
+        if(str[i]==str[j])
+        {
+            arr[k]=arr[l]=str[i];
+            k++,l--, i++, j--;
+        }
+        else
+        {
+            int mx=max(dp[i+1][j-1], dp[i][j-1]);
+            if(mx==dp[i+1][j])i++;
+            else j--;
+
+        }
+    }
+    for(int i=0; i<n; i++)cout<<arr[i];
+    cout<<endl;
+
+}
+
+int main()
+{
+    string str=  "GEEKS FOR GEEKS";
+    int ln = str.size();
+    int n = LPS(str, ln);
+    cout<<n<<endl;
+    Path(n, ln, str);
+}
