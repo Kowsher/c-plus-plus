@@ -1,0 +1,51 @@
+///Time Complexity of the  implementation is O(n^2)
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int M[100][100];
+
+int Cut_Rod(int rod_profit[], int len, int nub_len)
+{
+
+    for(int i=0; i<=nub_len; i++)
+    {
+        for(int j=0; j<=len; j++)
+        {
+            if(j==0 || i==0)M[i][j]=0;
+            else if(i>j)M[i][j]=M[i-1][j];
+            else M[i][j]=max(rod_profit[i-1]+M[i][j-i], M[i-1][j]);
+        }
+    }
+    return M[nub_len][len];
+}
+
+void path(int i, int j)
+{
+    while(i!=0)
+    {
+        if(M[i][j]==M[i-1][j])i--;
+        else{
+            cout<<i<<" ";
+            j=j-i;
+
+        }
+    }
+}
+int main()
+{
+    int len, nub_len;
+    cin>>len;
+    cin>>nub_len;
+
+    int rod_profit[nub_len];
+
+    for(int i=0; i<nub_len; i++)
+    {
+        cin>>rod_profit[i];
+    }
+    cout<<Cut_Rod(rod_profit, len, nub_len)<<endl;
+    cout<<"Path are " ;
+    path(nub_len, len);
+    return 0;
+}
