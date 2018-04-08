@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define mx 100
+
+int min_jum[mx], path_jum[mx];
+
+int Minimum_Jump(int nubs_jum[], int n)
+{
+    path_jum[0]=-1;
+    for(int i=1; i<n; i++)
+    {
+        int mn= INT_MAX,k;
+        for(int j=0; j<i; j++)
+        {
+            if(nubs_jum[j]>=i-j)
+            {
+                if(mn>(1+min_jum[j]))
+                {
+                    mn=1+min_jum[j];
+                    k=j;
+                }
+
+            }
+
+        }
+        min_jum[i]=mn;
+        path_jum[i]= k;
+    }
+
+    return min_jum[n-1];
+}
+void path(int n)
+{
+    if(n==-1)return;
+    path(path_jum[n]);
+    cout<<n<<" ";
+
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int nubs_jum[n+1];
+    for(int i=0; i<n; i++)
+    {
+        cin>>nubs_jum[i];
+    }
+   cout<<Minimum_Jump(nubs_jum,n)<<endl;
+   path(n-1);
+    /*
+10
+2 1 3 2 3 4 5 1 2 8
+
+    */
+}
