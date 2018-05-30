@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+set<int>add;
+
+void Divisors(int n)
+{
+    for(int i=1; i<=n/i; i++)
+    {
+        if(n%i==0)
+        {
+                add.insert(i);
+                add.insert(n/i);
+        }
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    Divisors(n);
+
+    for(auto & x: add)cout<<x<<" ";
+    cout<<endl;
+
+
+
+    return 0;
+}
