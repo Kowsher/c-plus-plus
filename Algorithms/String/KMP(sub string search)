@@ -1,0 +1,59 @@
+///O(length of target)
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+void prefix(string pat, int Pi[]) {
+    Pi[0] = 0;
+    int i = 1, j = 0;
+    int sz = pat.size();
+    while(i<sz) {
+        if (pat[i] == pat[j])
+            Pi[i++] = ++j;
+        else if (j == 0)
+            Pi[i++] = 0;
+        else
+            j = Pi[j-1];
+    }
+
+}
+void KMP(string pattern, string target)
+{
+    int n=target.length(),  m=pattern.length(), i=0, j=0, rest;
+
+    int Pi[m];
+    prefix(pattern, Pi);
+    while(i<n)
+    {
+        if(target[i]==pattern[j])
+        {
+            i++,j++;
+            if(j==m)
+            {
+                rest= i-m;
+                cout<<"matched at position : "<<rest<<endl;
+                j=Pi[j-1];
+            }
+
+        }
+        else if(j)j=Pi[j-1];
+        else i++;
+    }
+
+
+}
+
+int main()
+{
+    string pattern, target;
+    cin>>target>>pattern;
+
+    KMP(pattern, target);
+
+
+
+
+
+    return 0;
+}
