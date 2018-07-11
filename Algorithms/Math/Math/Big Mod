@@ -1,0 +1,22 @@
+///O(log n)
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ int mod(int X, int n, int M) {
+   if (n==0) return 1;
+   if (n%2) return ((X%M) * mod(X,n-1,M)) %M;
+   else {
+      int d = mod(X,n/2, M);
+      return (d * d)%M;
+   }
+}
+
+int main() {
+   int a,b,c;
+   cin>>a>>b>>c;
+   cout<<mod(a,b,c);
+
+   return 0;
+}
