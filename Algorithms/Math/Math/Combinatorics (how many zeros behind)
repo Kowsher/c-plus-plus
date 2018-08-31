@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int CountZeros(int n)
+{
+    int cnt=0, ck;
+    for(int i=1; ; i++)
+    {
+        ck = n/pow(5, i);
+        if(ck==0)return cnt;
+        else cnt+=ck;
+    }
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    cout<<CountZeros(n);
+
+
+    return 0;
+}
